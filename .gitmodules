@@ -1,6 +1,0 @@
-[submodule "codeql"]
-	path = codeql
-	url = https://github.com/github/codeql
-[submodule "codeql-go"]
-	path = codeql-go
-	url = https://github.com/github/codeql-go
