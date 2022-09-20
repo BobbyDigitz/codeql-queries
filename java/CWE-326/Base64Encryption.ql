@@ -17,16 +17,8 @@ import semmle.code.java.dataflow.FlowSources
 import semmle.code.java.dataflow.TaintTracking2
 import DataFlow::PathGraph
 // Internal
+import github.Encoding
 import github.SensitiveInformation
-
-class Base64Sinks extends DataFlow::Node {
-  Base64Sinks() {
-    exists(MethodAccess ma |
-      ma.getMethod().getDeclaringType().hasQualifiedName("java.util", "Base64$Encoder") and
-      this.asExpr() = ma
-    )
-  }
-}
 
 class Base64EncryptionConfig extends TaintTracking::Configuration {
   Base64EncryptionConfig() { this = "Base64EncryptionConfig" }
@@ -35,7 +27,7 @@ class Base64EncryptionConfig extends TaintTracking::Configuration {
     source instanceof SensitiveInformationSources
   }
 
-  override predicate isSink(DataFlow::Node sink) { sink instanceof Base64Sinks }
+  override predicate isSink(DataFlow::Node sink) { sink instanceof Base64::Encoding }
 }
 
 // ========== Query ==========
