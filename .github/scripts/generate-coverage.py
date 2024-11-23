@@ -97,23 +97,7 @@ def createQueryTable(suites: dict, language: str):
 
     # for suite, queries in suites.items():
     for suite in default_suite_order:
-        queries = suites.get(suite)
-        if not queries:
-            continue
-        for query in queries:
-            if query.startswith("codeql"):
-                continue
-            if query in full_list:
-                continue
-
-            query_name = "Unknown"
-            query_severity = "Unknown"
-            query_severity_scrore = "1.0"
-
-            with open(query, "r") as handle:
-                for line in handle:
-                    if line.startswith(" * @name"):
-                        query_name = line.replace(" * @name ", "").strip()
+        queries = 
                     if line.startswith(" * @sub-severity"):
                         query_severity = line.replace(" * @sub-severity ", "").strip()
                     if line.startswith(" * @security-severity"):
@@ -121,11 +105,7 @@ def createQueryTable(suites: dict, language: str):
                             " * @security-severity ", ""
                         ).strip()
 
-            RETVAL += f"| `{query_name}` | {query_severity.title()} / {query_severity_scrore} | `{query}` |\n"
-
-            full_list.append(query)
-
-    return RETVAL
+            RETVAL += f"| `{query_name}` | {query_severity.title()} / 
 
 
 def createMarkdown(
