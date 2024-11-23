@@ -15,16 +15,7 @@ class PrintMethod extends LoggingSinks {
 
 class LoggingFramework extends LoggingSinks {
   LoggingFramework() {
-    exists(DataFlow::Node call, API::Node node |
-      (
-        (
-          node = API::moduleImport("logging")
-          or
-          node = API::moduleImport("logging").getMember("getLogger").getReturn()
-        ) and
-        call = node.getMember(["info", "debug", "warning", "error"]).getACall()
-      ) and
-      call.getScope().inSource() and
+    exists(DataFlow::Node call, e() and
       this = call
     )
   }
