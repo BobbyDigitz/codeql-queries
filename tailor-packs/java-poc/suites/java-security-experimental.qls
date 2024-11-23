@@ -7,23 +7,6 @@
     - alert
     - path-alert
     tags contain:
-    - security
-    query path:
-      - /experimental\/.*/
-- include:
-    kind:
-    - diagnostic
-- include:
-    kind:
-    - metric
-    tags contain:
-    - summary
+    - ted: //
 - exclude:
-    deprecated: //
-- exclude:
-    query path:
-      - Metrics/Summaries/FrameworkCoverage.ql
-      - /Diagnostics/Internal/.*/
-- exclude:
-    tags contain:
-      - model-generator
+    query 
