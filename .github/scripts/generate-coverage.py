@@ -1,10 +1,4 @@
-from ast import parse
-import os
-import json
-import argparse
-import subprocess
-
-parser = argparse.ArgumentParser("GenerateCoverage")
+ser("GenerateCoverage")
 parser.add_argument("-l", "--language")
 
 parser.add_argument("-o", "--output")
