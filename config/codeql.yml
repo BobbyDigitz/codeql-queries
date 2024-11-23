@@ -1,10 +1,4 @@
-name: "GitHub Field CodeQL Configuration"
-
-disable-default-queries: true
-
-queries:
-  # C/CPP queries
-  - uses: advanced-security/codeql-queries/cpp/suites/codeql-cpp.qls@main
+/codeql-cpp.qls@main
 
   # CSharp queries
   - uses: advanced-security/codeql-queries/csharp/suites/codeql-csharp.qls@main
