@@ -1,2 +1,2 @@
 name: "Don't run the default language query packs"
-disable-default-queries: true
+disable-default-queries: false
