@@ -52,49 +52,13 @@ module LocalSources {
             call = args.getAnAttributeRead()
           )
         ) and
-        call.getScope().inSource() and
-        this = call
-      )
-    }
-  }
-
-  // Local Enviroment Variables
-  class EnviromentVariablesSources extends LocalSources::Range {
-    EnviromentVariablesSources() {
-      exists(DataFlow::Node call |
-        (
-          // os.getenv('abc')
-          call = API::moduleImport("os").getMember("getenv").getACall()
-          or
-          // a = os.environ['abc']
-          call.asCfgNode().(SubscriptNode).getObject() =
-            API::moduleImport("os").getMember("environ").getAValueReachableFromSource().asCfgNode()
-          or
-          // g = os.environ.get('abc')
-          call = API::moduleImport("os").getMember("environ").getMember("get").getACall()
-        ) and
-        call.getScope().inSource() and
-        this = call
-      )
-    }
-  }
-
-  // Local File Reads
-  class FileReadSource extends LocalSources::Range {
-    FileReadSource() {
-      // exists(StrConst literal | this = DataFlow::exprNode(literal))
-      exists(DataFlow::Node call |
-        (
-          // https://docs.python.org/3/library/functions.html#open
+        l#open
           // var = open('abc.txt')
           call = API::builtin("open").getACall().getAMethodCall("read")
           or
           // https://docs.python.org/3/library/os.html#os.read
           call = API::moduleImport("os").getMember(["read"]).getACall()
         ) and
-        this = call
-      ) and
-      this.getScope().inSource()
-    }
+        
   }
 }
